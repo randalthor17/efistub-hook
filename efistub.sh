@@ -92,13 +92,12 @@ if [[ ${CREATE} == ${REMOVE} ]]; then
 	exit 1
 fi
 
-# check if the kernel and initrd files exist
-if [ ! -f "/boot/${KERNEL}" ]; then
-	echo "Kernel file not found: ${KERNEL}"
-	exit 1
-fi
-
 create() {
+	# check if the kernel and initrd files exist
+	if [ ! -f "/boot/${KERNEL}" ]; then
+		echo "Kernel file not found: ${KERNEL}"
+		exit 1
+	fi
 	if [ ! -f "/boot/${INITRD}" ]; then
 		echo "Initrd file not found: ${INITRD}"
 		exit 1
