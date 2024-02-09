@@ -7,7 +7,7 @@ usage() {
 # Find the mounted root device
 ROOTDEV=$(df -P / | tail -1 | awk '{print $1}')
 # Find the swapfile if it exists
-SWAPDEV=$(swapon -s | awk '{print $1}' | tail -1)
+SWAPDEV=$(swapon --show=NAME --noheadings --raw | awk '!/zram/ {print $1}' | tail -1)
 # Find the boot partition
 BOOTDEV=$(findmnt -n -M /boot -r | awk '{print $2}')
 
